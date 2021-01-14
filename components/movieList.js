@@ -8,27 +8,10 @@ class MovieList extends React.Component {
       count: 0,
     };
   }
-  increment = () => {
-    const { count } = this.state;
-    this.setState({ count: count + 1 });
-  };
-  decrement = () => {
-    const { count } = this.state;
-    this.setState({ count: count - 1 });
-  };
 
   render() {
     return (
       <React.Fragment>
-        <div>
-          <button onClick={this.increment} className="btn btn-primary">
-            Increment
-          </button>
-          <button onClick={this.decrement} className="btn btn-primary">
-            Decrement
-          </button>
-          <h1>{this.state.count}</h1>
-        </div>
         <div className="col-lg-4 col-md-6 mb-4">
           <div className="card h-100">
             <a href="#">
