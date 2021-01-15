@@ -1,9 +1,6 @@
 const SideMenu = (props) => {
   return (
     <div>
-      <button className="btn btn-primary" onClick={props.clickHandler}>
-        Click me.
-      </button>
       <h1 className="my-4">{props.appName}</h1>
       <div className="list-group">
         <a href="#" className="list-group-item">
@@ -15,9 +12,6 @@ const SideMenu = (props) => {
         <a href="#" className="list-group-item">
           Category 3
         </a>
-      </div>
-      <div>
-        <h1>{props.count}</h1>
       </div>
     </div>
   );

@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import SideMenu from "../components/sideMenu";
 import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
 import Footer from "../components/footer";
-import { useState } from "react";
+
+import { getMovies } from "../actions";
 
 const Home = () => {
+  const [movies, setMovies] = useState([]);
   const [count, setCount] = useState(0);
+  debugger;
+  useEffect(() => {
+    const fetchData = async () => {
+      const resMovies = await getMovies();
+      setMovies(resMovies);
+    };
 
-  const increment = () => {
-    setCount(count + 1);
-  };
-  const decrement = () => {
-    setCount(count - 1);
-  };
+    fetchData();
+
+    // getMovies().then((movies) => {
+    //   setMovies(movies)
+    // })
+  }, [count]);
 
   return (
     <div>
@@ -46,31 +54,28 @@ const Home = () => {
       <Navbar />
       <div className="home-page">
         <div className="container">
-          <button onClick={increment} className="btn btn-primary">
-            Increment
-          </button>
-          <button onClick={decrement} className="btn btn-primary">
-            Decrement
-          </button>
+          <button onClick={() => setCount(count)}>Click Me!</button>
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu
-                appName={"Movie DB"}
-                clickHandler={() => console.log("hi world")}
-                count={count}
-              />
+              <SideMenu appName={"Movie DB"} />
             </div>
             <div className="col-lg-9">
               <Carousel />
               <div className="row">
-                <MovieList count={count} />
+                <MovieList movies={movies} />
               </div>
             </div>
           </div>
         </div>
       </div>
       <Footer />
-      <style jsx>{".home-page {padding-top: 80px;}"}</style>
+      <style jsx>
+        {`
+          .home-page {
+            padding-top: 80px;
+          }
+        `}
+      </style>
     </div>
   );
 };
