@@ -13,17 +13,32 @@ class Home extends React.Component {
     super(props);
     this.state = {
       movies: [],
+      errorMessage: "",
     };
   }
 
+  // state = {
+  //   movies: []
+  // }
+
+  // Called only once when componenent is mounted!
+  // async componentDidMount() {
+  //   const movies = await getMovies()
+  //   this.setState({movies})
+  // }
+
   componentDidMount() {
-    getMovies().then((movies) => {
-      this.setState({ movies });
-    });
+    getMovies()
+      .then((movies) => {
+        this.setState({ movies });
+      })
+      .catch((error) => {
+        this.setState({ errorMessage: error });
+      });
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies, errorMessage } = this.state;
     return (
       <div>
         <Head>
@@ -60,6 +75,11 @@ class Home extends React.Component {
               <div className="col-lg-9">
                 <Carousel />
                 <div className="row">
+                  {errorMessage && (
+                    <div className="alert alert-danger" role="alert">
+                      {errorMessage}
+                    </div>
+                  )}
                   <MovieList movies={movies} />
                 </div>
               </div>
