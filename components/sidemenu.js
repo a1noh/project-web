@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Modal from "./modal";
-import MovieCreateForm from "./movieCreateForm";
-import { createMovie } from "../actions";
+import ProjectCreateForm from "./ProjectCreateForm";
+import { createProject } from "../actions";
 
 // Containment
 const SideMenu = (props) => {
@@ -10,8 +10,8 @@ const SideMenu = (props) => {
   const router = useRouter();
   let modal = null;
 
-  const handleCreateMovie = (movie) => {
-    createMovie(movie).then((movies) => {
+  const handleCreateProject = (Project) => {
+    createProject(Project).then((Projects) => {
       modal.closeModal();
       router.push("/");
     });
@@ -20,7 +20,7 @@ const SideMenu = (props) => {
   return (
     <div>
       <Modal ref={(ele) => (modal = ele)} hasSubmit={false}>
-        <MovieCreateForm handleFormSubmit={handleCreateMovie} />
+        <ProjectCreateForm handleFormSubmit={handleCreateProject} />
       </Modal>
       <h1 className="my-4">{props.appName}</h1>
       <div className="list-group">

@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import SideMenu from "../components/sideMenu";
 import Carousel from "../components/carousel";
-import MovieList from "../components/movieList";
+import ProjectList from "../components/ProjectList";
 
-import { getMovies, getCategories } from "../actions";
+import { getProjects, getCategories } from "../actions";
 
 const Home = (props) => {
-  const { images, categories, movies } = props;
+  const { images, categories, Projects } = props;
   return (
     <div>
       <div className="home-page">
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu categories={categories} appName={"Movie DB"} />
+              <SideMenu categories={categories} appName={"Project DB"} />
             </div>
             <div className="col-lg-9">
               <Carousel images={images} />
               <div className="row">
-                <MovieList movies={movies || []} />
+                <ProjectList Projects={Projects || []} />
               </div>
             </div>
           </div>
@@ -29,16 +29,16 @@ const Home = (props) => {
 };
 
 Home.getInitialProps = async () => {
-  const movies = await getMovies();
+  const Projects = await getProjects();
   const categories = await getCategories();
-  const images = movies.map((movie) => ({
-    id: `image-${movie.id}`,
-    url: movie.cover,
-    name: movie.name,
+  const images = Projects.map((Project) => ({
+    id: `image-${Project.id}`,
+    url: Project.cover,
+    name: Project.name,
   }));
 
   return {
-    movies,
+    Projects,
     images,
     categories,
   };
@@ -47,36 +47,36 @@ Home.getInitialProps = async () => {
 // class Home extends React.Component {
 
 //   static async getInitialProps() {
-//     const movies = await getMovies()
+//     const Projects = await getProjects()
 
 //     return {
-//       movies
+//       Projects
 //     }
 //   }
 
 //   // constructor(props) {
 //   //   super(props)
 //   //   this.state = {
-//   //     movies: [],
+//   //     Projects: [],
 //   //     errorMessage: ''
 //   //   }
 //   // }
 
 //   // state = {
-//   //   movies: []
+//   //   Projects: []
 //   // }
 
 //   // Called only once when componenent is mounted!
 //   // async componentDidMount() {
-//   //   const movies = await getMovies()
-//   //   this.setState({movies})
+//   //   const Projects = await getProjects()
+//   //   this.setState({Projects})
 //   // }
 
 //   // Is called only on Client (Browser...)
 //   // componentDidMount() {
-//   //   getMovies()
-//   //     .then((movies) => {
-//   //       this.setState({movies})
+//   //   getProjects()
+//   //     .then((Projects) => {
+//   //       this.setState({Projects})
 //   //     })
 //   //     .catch((error) => {
 //   //       this.setState({errorMessage: error})
@@ -84,7 +84,7 @@ Home.getInitialProps = async () => {
 //   // }
 
 //   render() {
-//     const { movies } = this.props
+//     const { Projects } = this.props
 //     return (
 //       <div>
 //         <Head>
@@ -100,13 +100,13 @@ Home.getInitialProps = async () => {
 //             <div className="row">
 //               <div className="col-lg-3">
 //                 <SideMenu
-//                   appName={"Movie DB"}
+//                   appName={"Project DB"}
 //                 />
 //               </div>
 //               <div className="col-lg-9">
 //                 <Carousel />
 //                 <div className="row">
-//                   <MovieList movies={movies} />
+//                   <ProjectList Projects={Projects} />
 //                 </div>
 //               </div>
 //             </div>

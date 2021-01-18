@@ -24,7 +24,7 @@ class Modal extends React.Component {
           data-toggle="modal"
           data-target="#exampleModal"
         >
-          Create Movie
+          Create Project
         </button>
 
         <div
@@ -39,7 +39,7 @@ class Modal extends React.Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Create Movie
+                  Create Project
                 </h5>
                 <button
                   type="button"

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:3000";
 
-const MOVIE_DATA = [];
+const Project_DATA = [];
 
 const CATEGORY_DATA = [
   { id: "c-1", name: "drama" },
@@ -25,15 +25,23 @@ export const getCategories = () => {
   });
 };
 
-export const getMovies = () => {
-  return axios.get(`${BASE_URL}/api/v1/movies`).then((res) => res.data);
+export const getProjects = () => {
+  return axios.get(`${BASE_URL}/api/v1/Projects`).then((res) => res.data);
 };
 
-export const createMovie = (movie) => {
-  movie.id = Math.random().toString(36).substr(2, 5);
-  return axios.post(`${BASE_URL}/api/v1/movies`, movie).then((res) => res.data);
+export const createProject = (Project) => {
+  Project.id = Math.random().toString(36).substr(2, 5);
+  return axios
+    .post(`${BASE_URL}/api/v1/Projects`, Project)
+    .then((res) => res.data);
 };
 
-export const getMovieById = (id) => {
-  return axios.get(`${BASE_URL}/api/v1/movies/${id}`).then((res) => res.data);
+export const getProjectById = (id) => {
+  return axios.get(`${BASE_URL}/api/v1/Projects/${id}`).then((res) => res.data);
+};
+
+export const deleteProject = (id) => {
+  return axios
+    .delete(`${BASE_URL}/api/v1/Projects/${id}`)
+    .then((res) => res.data);
 };

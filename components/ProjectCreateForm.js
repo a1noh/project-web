@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const MovieCreateform = (props) => {
+const ProjectCreateform = (props) => {
   const [form, setform] = useState({
     name: "",
     description: "",
@@ -142,4 +142,4 @@ const MovieCreateform = (props) => {
   );
 };
 
-export default MovieCreateform;
+export default ProjectCreateform;

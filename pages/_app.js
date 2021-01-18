@@ -3,7 +3,7 @@ import Head from "next/head";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
-class MovieApp extends App {
+class ProjectApp extends App {
   // TODO: execute here getInitialProps and pass this data to your page
 
   static async getInitialProps(appContext) {
@@ -59,4 +59,4 @@ class MovieApp extends App {
   }
 }
 
-export default MovieApp;
+export default ProjectApp;
