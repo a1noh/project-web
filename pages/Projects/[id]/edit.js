@@ -1,26 +1,32 @@
 import React from "react";
-import ProjectCreateform from "../../../components/ProjectCreateForm";
-import { getProjectById } from "../../../actions/";
+import Router from "next/router";
+import ProjectCreateForm from "../../../components/ProjectCreateForm";
+import { getProjectById, updateProject } from "../../../actions";
+
 class EditProject extends React.Component {
-  static getInitialProps({ query }) {
-    return { query };
+  static async getInitialProps({ query }) {
+    const Project = await getProjectById(query.id);
+
+    return { Project };
   }
-  state = {
-    project: {},
+
+  handleUpdateProject = (Project) => {
+    updateProject(Project).then((updatedProject) => {
+      // router.push('/')
+      Router.push(`/Projects/${Project.id}`);
+    });
   };
 
-  componentDidMount() {
-    const { id } = this.props.query;
-    getProjectById(id).then((project) => {
-      this.setState({ project });
-    });
-  }
   render() {
+    const { Project } = this.props;
     return (
       <div className="container">
-        <h1>Edit the current project</h1>
-        {JSON.stringify(this.state.project)}
-        <ProjectCreateform />
+        <h1>Edit the Project</h1>
+        <ProjectCreateForm
+          submitButton="Update"
+          initialData={Project}
+          handleFormSubmit={this.handleUpdateProject}
+        />
       </div>
     );
   }

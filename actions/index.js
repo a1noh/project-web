@@ -5,6 +5,7 @@ const BASE_URL = "http://localhost:3000";
 const Project_DATA = [];
 
 const CATEGORY_DATA = [
+  { id: "c-0", name: "all" },
   { id: "c-1", name: "drama" },
   { id: "c-2", name: "action" },
   { id: "c-3", name: "adventeru" },
@@ -38,6 +39,12 @@ export const createProject = (Project) => {
 
 export const getProjectById = (id) => {
   return axios.get(`${BASE_URL}/api/v1/Projects/${id}`).then((res) => res.data);
+};
+
+export const updateProject = (Project) => {
+  return axios
+    .patch(`${BASE_URL}/api/v1/Projects/${Project.id}`, Project)
+    .then((res) => res.data);
 };
 
 export const deleteProject = (id) => {

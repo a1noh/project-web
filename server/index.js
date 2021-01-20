@@ -44,8 +44,8 @@ app.prepare().then(() => {
 
   server.delete("/api/v1/Projects/:id", (req, res) => {
     const { id } = req.params;
-    const projectIndex = ProjectsData.findIndex((m) => m.id === id);
-    ProjectsData.splice(projectIndex, 1);
+    const ProjectIndex = ProjectsData.findIndex((m) => m.id === id);
+    ProjectsData.splice(ProjectIndex, 1);
 
     const pathToFile = path.join(__dirname, filePath);
     const stringifiedData = JSON.stringify(ProjectsData, null, 2);
@@ -55,7 +55,26 @@ app.prepare().then(() => {
         return res.status(422).send(err);
       }
 
-      return res.json("Project has been succesfuly deleted!");
+      return res.json("Project has been succesfuly added!");
+    });
+  });
+
+  server.patch("/api/v1/Projects/:id", (req, res) => {
+    const { id } = req.params;
+    const Project = req.body;
+    const ProjectIndex = ProjectsData.findIndex((m) => m.id === id);
+
+    ProjectsData[ProjectIndex] = Project;
+
+    const pathToFile = path.join(__dirname, filePath);
+    const stringifiedData = JSON.stringify(ProjectsData, null, 2);
+
+    fs.writeFile(pathToFile, stringifiedData, (err) => {
+      if (err) {
+        return res.status(422).send(err);
+      }
+
+      return res.json(Project);
     });
   });
 

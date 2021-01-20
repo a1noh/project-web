@@ -7,18 +7,43 @@ import { getProjects, getCategories } from "../actions";
 
 const Home = (props) => {
   const { images, categories, Projects } = props;
+  const [filter, setFitler] = useState("all");
+
+  const changeCategory = (category) => {
+    setFitler(category);
+  };
+
+  // const changeCategory = (category) => {
+  //   alert(`changing to cateogry of: ${category}`);
+  // };
+
+  const filterProjects = (Projects) => {
+    if (filter == "all") {
+      return Projects;
+    }
+    return Projects.filter((m) => {
+      return m.genre && m.genre.includes(filter); // checking if it exists,
+      //and then checking if the type includes filter
+    });
+  };
   return (
     <div>
       <div className="home-page">
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu categories={categories} appName={"Project DB"} />
+              <SideMenu
+                changeCategory={changeCategory}
+                activeCategory={filter}
+                categories={categories}
+                appName={"Project DB"}
+              />
             </div>
             <div className="col-lg-9">
               <Carousel images={images} />
+              <h1>displaying {filter} projects</h1>
               <div className="row">
-                <ProjectList Projects={Projects || []} />
+                <ProjectList Projects={filterProjects(Projects) || []} />
               </div>
             </div>
           </div>

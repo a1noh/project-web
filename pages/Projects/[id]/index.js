@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { getProjectById, deleteProject } from "../../../actions";
+import Link from "next/link";
 
 const Project = (props) => {
   const router = useRouter();
@@ -24,12 +25,17 @@ const Project = (props) => {
         </button>
         <button
           onClick={() => handleDeleteProject(id)}
-          className="btn btn-danger btn-lg"
+          className="btn btn-danger btn-lg mr-1"
           href="#"
           role="button"
         >
           Delete
         </button>
+        <Link href="/Projects/[id]/edit" as={`/Projects/${id}/edit`}>
+          <button className="btn btn-warning btn-lg" href="#" role="button">
+            Edit
+          </button>
+        </Link>
       </div>
       <p className="desc-text">{Project.longDesc}</p>
       <style jsx>
