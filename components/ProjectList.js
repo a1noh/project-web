@@ -25,7 +25,7 @@ class ProjectList extends React.Component {
                 <a>{Project.name}</a>
               </Link>
             </h4>
-            <div>{Project.genre}</div>
+            <div className="project-genre">{Project.genre}</div>
             <p className="card-text">
               {this.shorten(Project.description, 100)}
             </p>

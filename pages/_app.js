@@ -3,6 +3,8 @@ import Head from "next/head";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
+import "../styles/index.scss";
+
 class ProjectApp extends App {
   // TODO: execute here getInitialProps and pass this data to your page
 
@@ -50,7 +52,8 @@ class ProjectApp extends App {
         <style jsx>
           {`
             .base-page {
-              padding-top: 80px;
+              padding-top: 100px;
+              padding-bottom: 100px;
             }
           `}
         </style>
