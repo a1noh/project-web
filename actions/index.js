@@ -48,6 +48,7 @@ export const updateProject = (Project) => {
 };
 
 export const deleteProject = (id) => {
+  console.log("hello");
   return axios
     .delete(`${BASE_URL}/api/v1/Projects/${id}`)
     .then((res) => res.data);
